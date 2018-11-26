@@ -1,4 +1,4 @@
-require('todo.style')
+--require('todo.style')
 
 local hotkey = {
     type = "custom-input",
@@ -6,4 +6,4 @@ local hotkey = {
     key_sequence = "SHIFT + T",
     consuming = "none",
 }
-data:extend({hotkey})
+--data:extend({hotkey})
