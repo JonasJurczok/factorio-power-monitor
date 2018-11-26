@@ -1,0 +1,11 @@
+{
+  "name": "PowerMon",
+  "version": "16.1.0",
+  "title": "Power Monitor",
+  "author": "Jason Miles, Tessiema",
+  "contact": "jonasjurczok+factorio@gmail.com",
+  "homepage": "https://github.com/JonasJurczok/factorio-power-monitor",
+  "factorio_version": "0.16",
+  "dependencies": ["base >= 0.15"],
+  "description": "This mod adds an UI to monitor power in entities."
+}
