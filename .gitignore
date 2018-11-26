@@ -4,4 +4,4 @@
 *.zip
 target/
 
-.faketorio
+/.faketorio
