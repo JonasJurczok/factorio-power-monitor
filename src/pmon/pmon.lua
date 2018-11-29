@@ -12,14 +12,24 @@ function pmon.on_tick(event)
         pmon.mod_init()
 
         for _, monitor in pairs(global.pmon) do
-            -- update data
-
+            pmon.update_data(monitor)
         end
 
         -- update UI
         for _, player in pairs(game.players) do
             pmon.update_ui(player)
         end
+    end
+end
+
+function pmon.update_data(monitor)
+    if (monitor.type == "solar-panel") then
+        monitor.value = (0.85 - monitor.entity.surface.darkness)/0.85
+    elseif (monitor.type == "accumulator") then
+        local max = monitor.entity.electric_buffer_size
+        local current = monitor.entity.energy
+
+        monitor.value = current / max
     end
 end
 
@@ -123,14 +133,13 @@ function pmon.add_monitor(player)
     local title = dialog.pmon_add_dialog_flow.pmon_add_monitor_title.text
 
     local monitor = {}
+    monitor.type = entity.prototype.type
     monitor.entity = entity
     monitor.title = title
     monitor.name = string.gsub(title, " ", "_")
-    monitor.type = entity.prototype.type
     monitor.value = 0
 
     table.insert(global.pmon, monitor)
-
 end
 
 function pmon.create_add_dialog(player, entity)
@@ -207,7 +216,16 @@ function pmon.on_player_selected_area(event)
     player = game.players[event.player_index]
 
     if player.cursor_stack.name == "pmon-power-monitor" then
-        player.clean_cursor()
-        pmon.create_add_dialog(player, event.entities[1])
+        local entity = event.entities[1]
+
+        if (entity) then
+            local type = entity.prototype.type
+            if (type == "solar-panel" or type == "accumulator") then
+                player.clean_cursor()
+                pmon.create_add_dialog(player, entity)
+            else
+                player.print("Currently only solar panels and accumulators are supported.")
+            end
+        end
     end
 end
