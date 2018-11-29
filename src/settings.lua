@@ -1,4 +1,4 @@
-data:extend({
+--[[data:extend({
 	{
 		name = "todolist-show-button",
 		setting_type = "runtime-per-user",
@@ -36,3 +36,4 @@ data:extend({
 		per_user = true,
 	}
 })
+]]--
