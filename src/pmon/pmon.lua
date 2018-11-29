@@ -7,24 +7,36 @@ function pmon.mod_init()
 end
 
 function pmon.on_tick(event)
-    if (event.tick % 10 == 0 and #global.pmon > 0) then
+    if (event.tick % 10 == 0) then
 
         pmon.mod_init()
 
+        local count = 0
+
         for _, monitor in pairs(global.pmon) do
-            pmon.update_data(monitor)
+
+            if (monitor.entity.valid) then
+                pmon.update_data(monitor)
+            else
+                game.players[1].print("removing monitor" .. monitor.title)
+                global.pmon[monitor.name] = nil
+            end
+
+            count = count + 1
         end
 
         -- update UI
-        for _, player in pairs(game.players) do
-            pmon.update_ui(player)
+        if (count > 0) then
+            for _, player in pairs(game.players) do
+                pmon.update_ui(player)
+            end
         end
     end
 end
 
 function pmon.update_data(monitor)
     if (monitor.type == "solar-panel") then
-        monitor.value = (0.85 - monitor.entity.surface.darkness)/0.85
+        monitor.value = (0.85 - monitor.entity.surface.darkness) / 0.85
     elseif (monitor.type == "accumulator") then
         local max = monitor.entity.electric_buffer_size
         local current = monitor.entity.energy
@@ -139,7 +151,7 @@ function pmon.add_monitor(player)
     monitor.name = string.gsub(title, " ", "_")
     monitor.value = 0
 
-    table.insert(global.pmon, monitor)
+    global.pmon[monitor.name] = monitor
 end
 
 function pmon.create_add_dialog(player, entity)
