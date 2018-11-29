@@ -8,12 +8,12 @@ script.on_init(pmon.mod_init)
 -- When a player is joining, create the UI for them
 --[[script.on_event(defines.events.on_player_created, function(event)
     local player = game.players[event.player_index]
-    todo.create_maximize_button(player)
+    pmon.create_ui(player)
 end)]]--
 
 -- if the version of the mod or any other version changed
 script.on_configuration_changed(function(_)
-    todo.mod_init()
+    pmon.mod_init()
 end)
 
 script.on_event(defines.events.on_gui_click, function(event)
@@ -22,6 +22,10 @@ end)
 
 script.on_event(defines.events.on_tick, function(event)
     pmon.on_tick(event)
+end)
+
+script.on_event(defines.events.on_player_selected_area, function(event)
+    pmon.on_player_selected_area(event)
 end)
 
 --[[
