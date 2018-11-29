@@ -106,9 +106,9 @@ function pmon.ensure_monitor_title(flow, monitor)
     })
 end
 
-function pmon.ensure_monitor_delete_button(flow, monitor)
+--[[function pmon.ensure_monitor_delete_button(flow, monitor)
 
-end
+end]]--
 
 function pmon.ensure_progress_bar(frame, monitor)
     local bar_name = "pmon_" .. monitor.name .. "_progress_bar"
@@ -200,7 +200,7 @@ function pmon.create_add_dialog(player, entity)
         direction = "horizontal"
     })
 
-    local ok = button_flow.add({
+    button_flow.add({
         type = "button",
         style = "pmon_button_default",
         name = "pmon_add_monitor_button",
@@ -225,7 +225,7 @@ function pmon.get_add_dialog(player)
 end
 
 function pmon.on_player_selected_area(event)
-    player = game.players[event.player_index]
+    local player = game.players[event.player_index]
 
     if player.cursor_stack.name == "pmon-power-monitor" then
         local entity = event.entities[1]

@@ -12,9 +12,8 @@ before_install:
   - sudo luarocks install faketorio
 
 script:
-# TODO: correct paths
-  - luacheck ./src/*.lua --globals todo mod_gui script game defines data serpent settings global
-  - luacheck ./src/todo/*.lua --globals todo mod_gui script game defines data serpent settings global
+  - luacheck ./src/*.lua --globals pmon mod_gui script game defines data serpent settings global table
+  - luacheck ./src/pmon/*.lua --globals pmon mod_gui script game defines data serpent settings global table
   - faketorio package -c .travis/.faketorio -v
 
 deploy:
