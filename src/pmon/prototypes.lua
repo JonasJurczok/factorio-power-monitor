@@ -20,7 +20,7 @@ local recipe = {
     name = "pmon-power-monitor",
     enabled = false, --this one may be set to TRUE to make recipe available from the start
     ingredients ={
-        {'advanced-circuit', 5}, {'red-wire', 50}, {'green-wire', 50},
+        {'electronic-circuit', 2}, {'copper-cable', 40}, {'red-wire', 26}, {'green-wire', 26}, {'steel-plate', 2}, {'iron-plate', 1}
     },
     result = "pmon-power-monitor"
 }

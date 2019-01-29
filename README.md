@@ -11,3 +11,12 @@ This is awesome, but much more info than needed.
 This mod shows you the current energy level of an entity compared to the maximum that was ever recorded.
 
 You can monitor multiple entities at the same time and give them names to distinguish them.
+
+## Changelog
+
+### 16.1.1
+- fix crash when other selection tools are used
+- change ingredients to make it buildable without oil
+
+### 16.1.0
+initial release

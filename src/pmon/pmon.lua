@@ -226,8 +226,9 @@ end
 
 function pmon.on_player_selected_area(event)
     local player = game.players[event.player_index]
+    local cursor_stack = player.cursor_stack
 
-    if player.cursor_stack.name == "pmon-power-monitor" then
+    if (cursor_stack.valid and cursor_stack.name == "pmon-power-monitor") then
         local entity = event.entities[1]
 
         if (entity) then
