@@ -14,7 +14,7 @@ You can monitor multiple entities at the same time and give them names to distin
 
 ## Changelog
 
-### 16.1.1
+### 16.1.2
 - fix crash when other selection tools are used
 - change ingredients to make it buildable without oil
 
